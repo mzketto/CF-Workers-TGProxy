@@ -8,7 +8,7 @@ const dup = v => u8(v).slice();
 function cat(...args) { const parts = args.filter(v => v?.byteLength).map(u8); const out = new Uint8Array(parts.reduce((total, part) => total + part.byteLength, 0)); let o = 0; for (const part of parts) { out.set(part, o); o += part.byteLength; } return out; }
 const hex = v => Uint8Array.from({ length: v.length / 2 }, (_, i) => Number.parseInt(v.slice(i * 2, i * 2 + 2), 16));
 function b64(v) { const b = v instanceof Uint8Array ? v : new Uint8Array(v); return btoa(String.fromCharCode(...b)).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, ''); }
-const un64 = v => { const s = v.replaceAll('-', '+').replaceAll('_', '/'); return Uint8Array.from(atob(s + '='.repeat((4 - s.length % 4) % 4)), c => c.charCodeAt(0)); };
+const un64 = v => { const  = v.replaceAll('-', '+').replaceAll('_', '/'); return Uint8Array.from(atob( + '='.repeat((4 - .length % 4) % 4)), c => c.charCodeAt(0)); };
 const rand = n => CRYPTO.getRandomValues(new Uint8Array(n));
 const wake = st => { const { wake: ok } = st; st.wake = null; ok?.(); };
 const isType = t => t === 1 || t === 2 || t === 3 || t === 4 || t === 17;
